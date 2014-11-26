@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome</h1><br>
+    <p>Click <a href="/logout">here</a> to logout</p>
+    <br><br>
+    <h3>Books</h3>
+    {% for book in books %}
+        <strong>Name: </strong>{{ book.name }} <br>
+        <strong>Year: </strong>{{ book.year }} <br>
+    {% endfor %}
+{% endblock %}

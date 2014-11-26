@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Flask welcome</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" media="screen">
+</head>
+<body>
+<div class="container">
+    {# content blog #}
+    {% block content %}
+    {% endblock %}
+
+    {# errors blog #}
+    {% if error %}
+        <p class="has-error"><strong>Error:</strong>{{ error }}</p>
+    {% endif %}
+
+    {# messages blog #}
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+    {% endfor %}
+</div>
+</body>
+</html>

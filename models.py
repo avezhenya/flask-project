@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    login = db.Column(db.String(50))
+    login = db.Column(db.String(50), index=True, unique=True)
     password = db.Column(db.String(50))
 
     def __init__(self, login, password):
@@ -25,23 +25,21 @@ class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
     year = db.Column(db.String(4))
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
 
-    #relationshop
-    autor_id = db.Column(db.Integer, db.ForeignKey('autor.id'))
-
-    def __init__(self, name, year, autor_id):
+    def __init__(self, name, year, author_id):
         self.name = name
         self.year = year
-        self.autor_id = autor_id
+        self.author_id = author_id
 
     def __repr__(self):
-        return '<Book is %r, year is %r, autor is %r>' % (self.name, self.year, self.autor_id)
+        return '<Book is %r, year is %r, author is %r>' % (self.name, self.year, self.author_id)
 
 
-class Autor(db.Model):
+class Author(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(250))
-    #autor_id = db.Column(db.Integer, db.ForeignKey('autor.id'))
+    books = db.relationship('Book', backref='author', lazy='dynamic')
 
     def __init__(self, name):
         self.name = name

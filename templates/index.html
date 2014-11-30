@@ -4,8 +4,20 @@
     <p>Click <a href="/logout">here</a> to logout</p>
     <br><br>
     <h3>Books</h3>
-    {% for book in books %}
-        <strong>Name: </strong>{{ book.name }} <br>
-        <strong>Year: </strong>{{ book.year }} <br>
-    {% endfor %}
+    <table border="2" cellpadding="20" width="500">
+        <tr>
+            <th>№</th>
+            <th>Название книги</th>
+            <th>Год издания</th>
+            <th>Автор</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.year }}</td>
+            <td>{{ book.author.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}

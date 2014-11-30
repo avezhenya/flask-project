@@ -22,7 +22,7 @@ def login_required(f):
 @login_required
 def index():
     books = db.session.query(Book).all()
-    print books
+    # print books
     return render_template('index.html', books=books)
 
 

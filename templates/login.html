@@ -1,11 +1,16 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h1>Login</h1><br>
-    <form action="" method="post">
-        <input type="TEXT" placeholder="Username" name="username" value="{{ request.form.username }}">
-        <input type="PASSWORD" placeholder="Password" name="password" value="{{ request.form.password }}">
-        <input class="btn btn-default" type="submit" value="Submit">
-    </form>
+    <form class="form-signin" role="form" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="form-control" placeholder="Username" name="username"
+               value="{{ request.form.username }}" required autofocus>
+        <input type="password" class="form-control" placeholder="Password" name="password"
+               value="{{ request.form.password }}" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="Submit">Sign in</button>
+        {% if error %}
+            <p class="has-error text-danger"><strong>Error: </strong>{{ error }}</p>
+        {% endif %}
+      </form>
 
 {% endblock %}

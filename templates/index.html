@@ -1,16 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>Welcome</h1><br>
-    <p>Click <a href="/logout">here</a> to logout</p>
-    <br><br>
-    <h3>Books</h3>
-    <table class="table table-bordered">
+    <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li><a href="/logout">logout</a></li>
+        </ul>
+        <h3 class="text-muted">Library</h3>
+    </div>
+      <div>
+        <h4>Books</h4>
+        <table class="table table-hover table-bordered">
+        <thead>
         <tr>
             <th>№</th>
             <th>Название книги</th>
             <th>Год издания</th>
             <th>Автор</th>
         </tr>
+        </thead>
+        <tbody>
         {% for book in books %}
         <tr>
             <td>{{ loop.index }}</td>
@@ -19,5 +26,7 @@
             <td>{{ book.author.name }}</td>
         </tr>
         {% endfor %}
-    </table>
+        </tbody>
+        </table>
+      </div>
 {% endblock %}
